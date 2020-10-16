@@ -75,8 +75,6 @@ const seedDb = function() {
             sustainibility: faker.lorem.sentence(),
             packaging: packaging(),
             sizes: sizes(),
-
-         
             imageUrls: images()
         };
         dataArray.push(productDetails);
