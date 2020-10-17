@@ -7,7 +7,8 @@
     "test": "jest --detectOpenHandles --coverage",
     "seed:db": "node ./database/seed",
     "build": "webpack -d --watch",
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "dataGen": "node database/seedRecords.js"
   },
   "repository": {
     "type": "git",

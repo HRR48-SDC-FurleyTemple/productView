@@ -2,10 +2,10 @@ const faker = require('faker');
 const fs = require('fs');
 
 const headerTemplate = 'id,name,description,articleNumber,details,materials,sustainability,width,height,length,weight,packages,shortDesc,thread-count,Pillowcase quantity, Duvet cover length, Duvet cover width, Pillowcase length, Pillowcase width, fitting, imagesUrls\n'
-const writeUsers = fs.createWriteStream('database/records.csv');
-writeUsers.write(headerTemplate, 'utf8');
+const writeRecords = fs.createWriteStream('database/records.csv');
+writeRecords.write(headerTemplate, 'utf8');
 
-function writeTenMillionUsers(writer, encoding, callback) {
+function writeTenMillionRecords(writer, encoding, callback) {
 
   let i = 10000000;
   let id = 0;
@@ -88,7 +88,7 @@ var dataGenerator = (id) => {
 }
 
 var startingTime = new Date;
-writeTenMillionUsers(writeUsers, 'utf-8', () => {
+writeTenMillionRecords(writeRecords, 'utf-8', () => {
   console.log((new Date - startingTime)/1000 + " seconds")
-  writeUsers.end();
+  writeRecords.end();
 });
