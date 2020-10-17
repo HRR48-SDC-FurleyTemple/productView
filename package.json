@@ -7,7 +7,8 @@
     "test": "jest --detectOpenHandles --coverage",
     "seed:db": "node ./database/seed",
     "build": "webpack -d --watch",
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "dataGen": "node database/seedRecords.js"
   },
   "repository": {
     "type": "git",
@@ -40,7 +41,10 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
+    "csvtojson": "^2.0.10",
     "express": "^4.17.1",
+    "json2csv": "^5.0.3",
+    "jsontocsv": "^0.3.0",
     "mongodb": "^3.6.2",
     "mongoose": "^5.10.7",
     "path": "^0.12.7",
