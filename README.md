@@ -11,9 +11,9 @@ DISCLAIMER - Postgres must be installed in your system for the following steps. 
    inside credentials.js we will create a variable called initial and export the module.
    initial should include your username, host, password, and port. Please see example below:
     const initial = {
-      user: 'javier',
+      user: 'username',
       host: 'localhost',
-      password: 'cookies123',
+      password: 'password',
       port: 5432,
     }
 
