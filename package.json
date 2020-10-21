@@ -8,7 +8,9 @@
     "seed:db": "node ./database/seed",
     "build": "webpack -d --watch",
     "start": "node server/index.js",
-    "dataGen": "node database/seedRecords.js"
+    "dataGenPG": "node database/seedRecordsPG.js",
+    "createPG": "node database/pgConnection.js",
+    "seedPG": "node database/pgSeeding.js"
   },
   "repository": {
     "type": "git",
@@ -48,6 +50,8 @@
     "mongodb": "^3.6.2",
     "mongoose": "^5.10.7",
     "path": "^0.12.7",
+    "pg": "^8.4.1",
+    "pgtools": "^0.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "styled-components": "^5.2.0"

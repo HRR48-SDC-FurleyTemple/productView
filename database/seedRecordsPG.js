@@ -1,12 +1,11 @@
 const faker = require('faker');
 const fs = require('fs');
 
-const headerTemplate = 'id,name,description,articleNumber,details,materials,sustainability,width,height,length,weight,packages,shortDesc,thread-count,Pillowcase quantity, Duvet cover length, Duvet cover width, Pillowcase length, Pillowcase width, fitting, imagesUrls\n'
+const headerTemplate = 'id,name,description,articleNumber,details,materials,sustainability,width,height,length,weight,packages,shortDesc,threadCount,pillowcaseQuantity,duvetCoverLength,duvetCoverWidth,pillowcaseLength,pillowcaseWidth,fitting,imagesUrls\n'
 const writeRecords = fs.createWriteStream('database/records.csv');
 writeRecords.write(headerTemplate, 'utf8');
 
 function writeTenMillionRecords(writer, encoding, callback) {
-
   let i = 10000000;
   let id = 0;
   function write() {
@@ -18,24 +17,19 @@ function writeTenMillionRecords(writer, encoding, callback) {
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {
-// see if we should continue, or wait
-// don't pass the callback, because we're not done yet.
         ok = writer.write(data, encoding);
       }
     } while (i > 0 && ok);
     if (i > 0) {
-// had to stop early!
-// write some more once it drains
       writer.once('drain', write);
     }
   }
 write()
-
 }
 
 var dataGenerator = (id) => {
   const name = faker.commerce.productName();
-  const description = faker.commerce.productDescription();
+  const description = faker.lorem.words(18)
   const articleNumber = faker.internet.ip().toString();
   const details = faker.lorem.sentence();
   const materials = faker.lorem.sentence();
@@ -54,7 +48,7 @@ var dataGenerator = (id) => {
   const pillowcaseWidth = Math.floor(Math.random() * 4 + 2);
   const fitting = faker.lorem.words() + ` (${faker.lorem.words()})`;
   const imagesGen = () => {
-    let imagesArr = [];
+    let imagesArr = "";
     let count = Math.floor(Math.random() * 15 + 6);
     let links = [
       "http://placeimg.com/640/480/fashion",
@@ -79,16 +73,20 @@ var dataGenerator = (id) => {
       "http://placeimg.com/640/480/nature"
     ];
     for (i = 0; i < count; i++) {
-      imagesArr.push(links[i]);
+      if (i === count-1) {
+        imagesArr += links[i];
+      } else {
+        imagesArr += links[i] + "-"
+      }
     }
     return imagesArr;
   }
   const images = imagesGen();
-  return `${id},${description},${articleNumber},${details},${materials},${sustainability},${width},${height},${length},${weight},${packages},${shortDesc},${threadCount},${pillowcaseQuantity},${duvetCoverLength},${duvetCoverWidth},${pillowcaseLength},${pillowcaseWidth},${fitting}, ${images}\n`;
+  return `${id},${name},${description},${articleNumber},${details},${materials},${sustainability},${width},${height},${length},${weight},${packages},${shortDesc},${threadCount},${pillowcaseQuantity},${duvetCoverLength},${duvetCoverWidth},${pillowcaseLength},${pillowcaseWidth},${fitting}, ${images}\n`;
 }
 
 var startingTime = new Date;
 writeTenMillionRecords(writeRecords, 'utf-8', () => {
-  console.log((new Date - startingTime)/1000 + " seconds")
+  console.log('finished data generation: ' + (new Date - startingTime)/1000 + " seconds")
   writeRecords.end();
 });

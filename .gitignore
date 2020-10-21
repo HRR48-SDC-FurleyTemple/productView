@@ -4,3 +4,4 @@ node_modules/
 package-lock.json
 globalConfig.json
 .vscode/
+database/credentials.js
