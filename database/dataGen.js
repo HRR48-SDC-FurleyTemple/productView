@@ -6,7 +6,7 @@ const writeRecords = fs.createWriteStream('database/records.csv');
 writeRecords.write(headerTemplate, 'utf8');
 
 function writeTenMillionRecords(writer, encoding, callback) {
-  let i = 10;
+  let i = 10000000;
   let id = 0;
   function write() {
     let ok = true;
