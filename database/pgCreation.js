@@ -48,7 +48,7 @@ const createTable = () => {
       pillowcaseLength SMALLINT,
       pillowcaseWidth SMALLINT,
       fitting TEXT,
-      imagesUrls TEXT
+      imagesUrls TEXT[]
     );
   `;
 

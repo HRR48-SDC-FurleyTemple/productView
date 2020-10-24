@@ -1,8 +1,8 @@
 # productView
 SETUP:
 1: NPM install dependencies
-2: Seed database: npm run seed:db -> should result in 100 records inserted
-3: start server: npm start
+2: Seed database: npm run seed:db -> should result in 100 records inserted (MONGO DB related)
+3: start server: npm start (MONGO DB related)
 4: Build client pack: npm run build
 
 POSTGRES SETUP:
@@ -18,11 +18,13 @@ DISCLAIMER - Postgres must be installed in your system for the following steps. 
     }
 
     module.exports.initial = initial;
-6: npm run dataGenPG
+6: npm run dataGen
   Please wait til you see the following: finished data generation: X seconds
 7: npm run createPG
   Please wait til you see the following messages: Database successfully created!
   Table successfully created!
 8: npm run seedPG
   Please wait til you see the following: finished seeding Postgres database: X seconds
+9: npm run bigServer
+  Will run server servicing the data from postgres Database - Port: 3050
 

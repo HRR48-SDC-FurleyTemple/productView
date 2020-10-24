@@ -8,9 +8,10 @@
     "seed:db": "node ./database/seed",
     "build": "webpack -d --watch",
     "start": "node server/index.js",
-    "dataGenPG": "node database/seedRecordsPG.js",
-    "createPG": "node database/pgConnection.js",
-    "seedPG": "node database/pgSeeding.js"
+    "dataGen": "node database/dataGen.js",
+    "createPG": "node database/pgCreation.js",
+    "seedPG": "node database/pgSeeding.js",
+    "bigServer": "node server/pgServer.js"
   },
   "repository": {
     "type": "git",

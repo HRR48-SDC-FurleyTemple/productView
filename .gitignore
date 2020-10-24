@@ -5,3 +5,4 @@ package-lock.json
 globalConfig.json
 .vscode/
 database/credentials.js
+database/records.csv
