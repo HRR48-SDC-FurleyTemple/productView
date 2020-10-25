@@ -1,6 +1,6 @@
 const client = require('../database/pgConnect.js');
 
-exports.getAll = (req, res) => {
+exports.getProduct = (req, res) => {
   let query = `SELECT * FROM records WHERE id=${req.params.id}`;
   client.query(query, (error, results) => {
     if (error) {

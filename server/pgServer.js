@@ -10,7 +10,7 @@ app.use('/*', (req,res, next) => {
     next();
 });
 
-app.get('/api/productView/products/:id', client.getAll);
+app.get('/api/productView/products/:id', client.getProduct);
 app.post('/api/productView/products/:id', client.add);
 
 
