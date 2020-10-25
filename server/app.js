@@ -14,6 +14,7 @@ app.get('/api/productView/products/:id', (req, res) => {
     console.log('get request happening')
     db.find({id: req.params.id})
     .then((resp) => {
+        console.log(resp[0])
         res.json(resp)
     })
     .catch((err) => {

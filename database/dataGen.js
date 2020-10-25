@@ -1,7 +1,7 @@
 const faker = require('faker');
 const fs = require('fs');
 
-const headerTemplate = 'id,name,description,articleNumber,details,materials,sustainability,width,height,length,weight,packages,shortDesc,threadCount,pillowcaseQuantity,duvetCoverLength,duvetCoverWidth,pillowcaseLength,pillowcaseWidth,fitting,imagesUrls\n'
+const headerTemplate = 'id|name|description|articleNumber|details|materials|sustainability|width|height|length|weight|packages|shortDesc|threadCount|pillowcaseQuantity|duvetCoverLength|duvetCoverWidth|pillowcaseLength|pillowcaseWidth|fitting|imagesUrls\n'
 const writeRecords = fs.createWriteStream('database/records.csv');
 writeRecords.write(headerTemplate, 'utf8');
 
@@ -48,7 +48,7 @@ var dataGenerator = (id) => {
   const pillowcaseWidth = Math.floor(Math.random() * 4 + 2);
   const fitting = faker.lorem.words() + ` (${faker.lorem.words()})`;
   const imagesGen = () => {
-    let imagesArr = "";
+    let imagesArr = "{";
     let count = Math.floor(Math.random() * 15 + 6);
     let links = [
       "http://placeimg.com/640/480/fashion",
@@ -74,15 +74,15 @@ var dataGenerator = (id) => {
     ];
     for (i = 0; i < count; i++) {
       if (i === count-1) {
-        imagesArr += links[i];
+        imagesArr += links[i] + "}";
       } else {
-        imagesArr += links[i] + "-"
+        imagesArr += links[i] + ",";
       }
     }
     return imagesArr;
   }
   const images = imagesGen();
-  return `${id},${name},${description},${articleNumber},${details},${materials},${sustainability},${width},${height},${length},${weight},${packages},${shortDesc},${threadCount},${pillowcaseQuantity},${duvetCoverLength},${duvetCoverWidth},${pillowcaseLength},${pillowcaseWidth},${fitting}, ${images}\n`;
+  return `${id}|${name}|${description}|${articleNumber}|${details}|${materials}|${sustainability}|${width}|${height}|${length}|${weight}|${packages}|${shortDesc}|${threadCount}|${pillowcaseQuantity}|${duvetCoverLength}|${duvetCoverWidth}|${pillowcaseLength}|${pillowcaseWidth}|${fitting}|${images}\n`;
 }
 
 var startingTime = new Date;
