@@ -1,8 +1,13 @@
 import http from 'k6/http';
 import { sleep } from 'k6';
 export let options = {
-  vus: 200,
-  duration: '300s',
+  stages: [
+    { duration: '10s', target: 10 },
+    { duration: '30s', target: 100 },
+    { duration: '30s', target: 300 },
+    { duration: '30s', target: 100 },
+    { duration: '20s', target: 0 },
+  ],
 };
 export default function () {
   const record = Math.floor(Math.random() * (1000000) + 9000000);
