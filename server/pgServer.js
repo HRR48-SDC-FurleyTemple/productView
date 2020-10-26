@@ -1,3 +1,4 @@
+const newrelic = require('newrelic');
 const express = require('express');
 const client = require('./pgClient.js');
 const app = express();
