@@ -6,3 +6,6 @@ globalConfig.json
 .vscode/
 database/credentials.js
 database/records.csv
+client/dist/bundle.js
+newrelic.js
+newrelic_agent.log

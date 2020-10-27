@@ -57,8 +57,14 @@ const createTable = () => {
         console.error(err);
         return;
     }
-    console.log('Table successfully created!')
-    client.end();
+    console.log('Table successfully created!');
+    let sequenceQuery =  `CREATE SEQUENCE records_sequence START 10000000 INCREMENT 1;`
+    client.query(sequenceQuery, (err, res) => {
+      if (err) {
+        return console.log('could not start sequence:', err);
+      }
+      return client.end();
+    });
   });
 }
 

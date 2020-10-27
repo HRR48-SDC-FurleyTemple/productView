@@ -10,7 +10,7 @@ client = new Client(finalizedCredentials);
 
 client.connect((err, res) => {
   if (err) {
-    return console.log('Connection failed. Error occurred:', err)
+    return console.log('Connection failed. Error occurred:', err);
   }
   return console.log('Connected to database: tenmillionrecords');
 })
