@@ -20,11 +20,17 @@ class Service extends React.Component {
     }
 
     componentDidMount() {
-        let rx = /(?:\b|-)([1-9]{1,2}[0]?|100)\b/;
-        let path = window.location.pathname;
-        let id = rx.exec(path);
-        axios.get( id ? `/api/productView/products/${id[0]}` : '/api/productView/products/1')
-           .then((res) => this.setState({productDetails: res.data[0]}))
+        console.log(window.location.href)
+        var currentUrl = window.location.href.split('/');
+        console.log(currentUrl)
+
+        let id = currentUrl[currentUrl.length - 1] ? currentUrl[currentUrl.length - 1] : currentUrl[currentUrl.length - 2]
+        axios.get( id ? `/api/productView/products/${id}` : '/api/productView/products/1')
+           .then((res) => {
+               console.log(res);
+               console.log(res.data[0]);
+               return this.setState({productDetails: res.data[0]})
+            })
            .catch((err) => console.error(err));
     }
 
