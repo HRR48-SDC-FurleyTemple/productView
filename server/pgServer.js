@@ -9,7 +9,7 @@ app.use('/*', (req,res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     next();
 });
-
+app.use('/:id', express.static(__dirname + '/../client/dist'));
 app.get('/api/productView/products/:id', client.getProduct);
 app.post('/api/productView/products/:id', client.add);
 
